@@ -1,11 +1,17 @@
-function BookCard() {
-    const bookstores = []
-    const id = null
+import { useOutletContext, useParams } from "react-router-dom"
 
+function BookCard() {
+    // destructure bookstores from outlet context
+    const { bookstores } = useOutletContext()
+    // get id and bookId from params
+    const { id, bookId } = useParams()
+
+    // find bookstore from id and bookstores
     const bookstore = bookstores.find(store => store.id === id)
 
     if (!bookstore) return <h2>Bookstore not found.</h2>
 
+    // find book from bookId and bookstore
     const book = bookstore.books.find(b => b.id === bookId)
   
     if (!book) return <h2>Book not found.</h2>
@@ -20,4 +26,3 @@ function BookCard() {
 }
   
 export default BookCard
-  
